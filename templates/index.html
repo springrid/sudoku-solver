@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SudokuSolver</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+    <body>
+        <h1 id="title">Solve Your Sudoku</h1>
+
+        {% from "_formhelpers.html" import render_input %}
+        <form action="/solve" method="post">
+        <table>
+          {% for row in 'ABCDEFGHI' %}
+          <tr>
+              {% for column in range(1, 10) %}
+              {% set placeholder_text = [row, column ] %}
+                {% if sudokudata is defined %}
+                <td>{{render_input(row, column, sudokudata[placeholder_text|join]) }}</td>
+                {% else %}
+                <td>{{render_input(row, column+1, '')}}</td>
+                {% endif %}
+              {% endfor %}
+
+          </tr>
+          {% endfor %}
+        </table>
+        <button type="submit">Solve :)</button>
+      </form>
+
+    </body>
+</html>
