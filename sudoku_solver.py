@@ -1,13 +1,19 @@
 class SudokuSolver:
+    """Solver logic from http://norvig.com/sudoku.html"""
+
     def __init__(self, solve):
         self.grid = ''
         self.grid_dict = dict()
 
         self.solve = solve
+        self.next_value = None
+
+        self.print_on = True
 
         self.digits = '123456789'
         self.rows = 'ABCDEFGHI'
         self.cols = self.digits
+
         self.squares = self.cross(self.rows, self.cols)
         self.unitlist = ([self.cross(self.rows, c) for c in self.cols] +
                 [self.cross(r, self.cols) for r in self.rows] +
@@ -19,10 +25,14 @@ class SudokuSolver:
         self.grid = data
         self.grid = '003020600900305001001806400008102900700000008006708200002609500800203009005010300'
 
-        if not self.parse_grid():
-            return data, False
+        if self.print_on:
+            self.parse_grid()
+            self.display()
+        else:
+            if not self.parse_grid():
+                return data, False
 
-        return self.grid, True
+        return self.grid, True, self.next_value
 
     @staticmethod
     def cross(a, b):
@@ -53,20 +63,11 @@ class SudokuSolver:
         assert len(chars) == 81
         return dict(zip(self.squares, chars))
 
-    def display(self):
-        """Display these values as a 2-D grid."""
-        values = self.grid
-        width = 1+max(len(values[s]) for s in self.squares)
-        line = '+'.join(['-'*(width*3)]*3)
-        for r in self.rows:
-            print(''.join(values[r+c].center(width)+('|' if c in '36' else '') for c in self.cols))
-            if r in 'CF':
-                print(line)
-
     def assign(self, values, s, d):
         """Eliminate all the other values (except d) from values[s] and propagate.
         Return values, except return False if a contradiction is detected."""
         other_values = values[s].replace(d, '')
+
         if all(self.eliminate(values, s, d2) for d2 in other_values):
             return values
         else:
@@ -87,6 +88,7 @@ class SudokuSolver:
 
         elif len(values[s]) == 1:
             d2 = values[s]
+
             if not all(self.eliminate(values, s2, d2) for s2 in self.peers[s]):
                 return False
 
@@ -101,7 +103,21 @@ class SudokuSolver:
                 # d can only be in one place in unit; assign it there
                 if not self.assign(values, d_places[0], d):
                     return False
+                else:
+                    # Save this as next solvable digit
+                    if not self.next_value:
+                        self.next_value = {s: d}
         return values
+
+    def display(self):
+        """Display these values as a 2-D grid."""
+        values = self.grid
+        width = 1+max(len(values[s]) for s in self.squares)
+        line = '+'.join(['-'*(width*3)]*3)
+        for r in self.rows:
+            print(''.join(values[r+c].center(width)+('|' if c in '36' else '') for c in self.cols))
+            if r in 'CF':
+                print(line)
 
 
 grid1 = '003020600900305001001806400008102900700000008006708200002609500800203009005010300'

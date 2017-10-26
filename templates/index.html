@@ -8,36 +8,22 @@
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/helper.js') }}"></script>
     </head>
 
     <body>
     <div id="wrapper">
 
-        <header id="header">
-
-                <!-- Logo
-                <a href="index.html" class="logo">
-                    <span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Phantom</span>
-                </a> -->
-
-                <!-- Nav
-                <nav>
-                    <ul>
-                        <li><a href="#menu">Menu</a></li>
-                    </ul>
-                </nav>-->
-
-        </header>
 
 
-        <div id="main">
+        <div id="main" style="padding-top:4em;">
         <div class="inner">
-            <header>
-                <h1 id="title">Solve Your Sudoku</h1>
-            </header>
+            <h1 id="title">Solve Your Sudoku</h1>
             <div id="sudoku" style="max-width: 500px; max-height: 500px; min-width: 300px; min-height: 300px;">
             {% from "_formhelpers.html" import render_input %}
-            <form action="/solve" method="post" class="no-spin">
+            <form action="/solve" method="post" class="no-spin" name="sudoku-form">
                 <table class="sudoku2">
                       {% for row in 'ABCDEFGHI' %}
                     {% if row in 'DG' %}
@@ -56,10 +42,11 @@
                 </table>
                 <ul class="actions">
                     <li><button type="submit">Analyze me :)</button></li>
+                    <li><button type="submit" name="reset" value="reset">Reset</button></li>
                 </ul>
                 <ul class="actions">
-                    <li><button type="submit" class="button special disabled">Get clue (1-9)</button></li>
-                    <li><button type="submit" class="button special disabled">Get clue (position)</button></li>
+                    <li><button type="submit" name="clue" value="digit" class="button special">Get clue (1-9)</button></li>
+                    <li><button type="submit" name="clue" value="position" class="button special disabled">Get clue (position)</button></li>
                 </ul>
                 <ul class="actions">
                     <li><button type="submit" class="button special disabled">Solve me ;)</button></li>

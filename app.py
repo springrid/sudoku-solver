@@ -19,13 +19,29 @@ def solve():
     if request.method == 'POST':
         data = dict(request.form)
 
+        if 'reset' in data:
+            redirect(url_for('index'))
+            return render_template('index.html', sudokudata=sudoku_data)
+
         values = [val[0] for key, val in sorted(data.items())]
         values = ['0' if val == '' else val for val in values]
         values = ''.join(values)
 
-        solution, solved = sudoku_solver.run(values)
+        solution, solvable, next_digit = sudoku_solver.run(values)
 
-        if solved:
+        if 'clue' in data:
+            sudoku_data = dict()
+            for k in data.keys():
+                sudoku_data[k] = data[k][0]
+            if data['clue'] == 'digit':
+                next_data = next_digit.values[0]
+            elif data['clue'] == 'position':
+                next_data = next_digit.keys[0]
+
+            redirect(url_for('index'))
+            return render_template('index.html', sudokudata=sudoku_data, next_data=next_data)
+
+        if solvable:
             sudoku_data = solution
         else:
             sudoku_data = data
