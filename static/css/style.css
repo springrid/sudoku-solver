@@ -13,7 +13,7 @@ table.sudoku2 {
     /*height: 1.4em;
     width: 1.4em;*/
     text-align: center;
-    padding: 0;
+    /*padding: 0;*/
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -35,3 +35,6 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
     -moz-appearance:textfield;
 }
+
+
+
