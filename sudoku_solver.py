@@ -21,7 +21,7 @@ class SudokuSolver:
 
         if not self.parse_grid():
             return data, False
-        
+
         return self.grid, True
 
     @staticmethod
