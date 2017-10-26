@@ -1,22 +1,7 @@
-from flask import Flask, render_template, request, session, redirect, g, url_for, abort, flash, Markup, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from flask_heroku import Heroku
-from datetime import datetime
-import os
-from sqlalchemy.orm import sessionmaker
-import time
-import json
-import numpy as np
+from flask import Flask, render_template, request, redirect, url_for
 from sudoku_solver import SudokuSolver
 
 app = Flask(__name__)
-#app.secret_key = os.urandom(12)
-#app.config['SESSION_TYPE'] = 'filesystem'
-#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-#heroku = Heroku(app)
-#db = SQLAlchemy(app)
-
 
 sudoku_solver = SudokuSolver(solve=True)
 
