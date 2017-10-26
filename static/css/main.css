@@ -2395,7 +2395,7 @@
 	table {
 		margin: 0 0 2em 0;
 		width: 100%;
-		/*table-layout: fixed;*/
+		table-layout: fixed;
 	}
 
 		table tbody tr {
@@ -2408,9 +2408,9 @@
             background-color: rgba(144, 144, 144, 0.075);
         }
 
-		/*table td {
+		table td {
 			padding: 0.75em 0.75em;
-		}*/
+		}
 
 		table th {
 			font-size: 0.9em;
