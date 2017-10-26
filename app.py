@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from sudoku_solver import SudokuSolver
 
 app = Flask(__name__)
-# app._static_folder = 'static'
+app._static_folder = 'static'
 
 sudoku_solver = SudokuSolver(solve=True)
 
