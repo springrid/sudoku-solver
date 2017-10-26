@@ -18,7 +18,7 @@
             <header>
                 <h1 id="title">Solve Your Sudoku</h1>
             </header>
-
+            <div id="sudoku" style="max-width: 500px; max-height: 500px; min-width: 300px; min-height: 300px;">
             {% from "_formhelpers.html" import render_input %}
             <form action="/solve" method="post" class="no-spin">
                 <table class="sudoku2">
@@ -42,7 +42,7 @@
                 </table>
                 <button type="submit">Solve :)</button>
             </form>
-
+            </div>
         </div>
         </div>
     </div>
