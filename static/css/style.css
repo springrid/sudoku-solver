@@ -1,0 +1,38 @@
+table.sudoku2 {
+    border-collapse: collapse;
+    font-family: Calibri, sans-serif;
+}
+.sudoku2 tr:nth-of-type(3n) {
+    border-bottom: solid medium;
+}
+.sudoku2 td:nth-of-type(3n) {
+    border-right: solid medium;
+}
+.sudoku2 td {
+    border: solid thin;
+    height: 1.4em;
+    width: 1.4em;
+    text-align: center;
+    padding: 0;
+    width: 50%;
+    padding-bottom: 50%;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.no-spin::-webkit-inner-spin-button, .no-spin::-webkit-outer-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+    -moz-appearance:textfield !important;
+}
+
+.no-spin, .no-spin:hover, no-spin:focus {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance:textfield;
+}

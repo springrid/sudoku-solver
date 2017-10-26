@@ -1645,6 +1645,8 @@
 		font-size: 16pt;
 		font-weight: 300;
 		line-height: 1.75;
+		height: 1.75;
+		width: 1.75;
 	}
 
 		@media screen and (max-width: 1680px) {
@@ -2393,6 +2395,7 @@
 	table {
 		margin: 0 0 2em 0;
 		width: 100%;
+		/*table-layout: fixed;*/
 	}
 
 		table tbody tr {
@@ -2401,13 +2404,13 @@
 			border-right: 0;
 		}
 
-			table tbody tr:nth-child(2n + 1) {
-				background-color: rgba(144, 144, 144, 0.075);
-			}
+        table tbody tr:nth-child(2n + 1) {
+            background-color: rgba(144, 144, 144, 0.075);
+        }
 
-		table td {
+		/*table td {
 			padding: 0.75em 0.75em;
-		}
+		}*/
 
 		table th {
 			font-size: 0.9em;

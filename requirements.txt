@@ -1,7 +1,5 @@
 flask==0.12.2
 Flask-RESTful
 gunicorn
-itsdangerous
 Jinja2
-peewee
 Werkzeug
