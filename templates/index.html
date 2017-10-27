@@ -35,7 +35,7 @@
                             {% if sudokudata is defined %}
                             <td>{{render_input(row, column, sudokudata[placeholder_text|join]) }}
                             {% else %}
-                            <td>{{render_input(row, column+1, '')}}
+                            <td>{{render_input(row, column, '')}}
                            {% endif %}
                           {% endfor %}
                       {% endfor %}
