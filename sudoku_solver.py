@@ -16,8 +16,8 @@ class SudokuSolver:
 
         self.squares = self.cross(self.rows, self.cols)
         self.unitlist = ([self.cross(self.rows, c) for c in self.cols] +
-                [self.cross(r, self.cols) for r in self.rows] +
-                [self.cross(rs, cs) for rs in ('ABC', 'DEF', 'GHI') for cs in ('123', '456', '789')])
+                         [self.cross(r, self.cols) for r in self.rows] +
+                         [self.cross(rs, cs) for rs in ('ABC', 'DEF', 'GHI') for cs in ('123', '456', '789')])
         self.units = dict((s, [u for u in self.unitlist if s in u]) for s in self.squares)
         self.peers = dict((s, set(sum(self.units[s], []))-set([s])) for s in self.squares)
 
@@ -29,10 +29,16 @@ class SudokuSolver:
             self.parse_grid()
             self.display()
         else:
-            if not self.parse_grid():
-                return data, False
+            self.parse_grid()
+        is_solved = self.solved(self.grid)
 
-        return self.grid, True, self.next_value
+        return self.grid, is_solved, self.next_value
+
+    def solved(self, values):
+        """A puzzle is solved if each unit is a permutation of the digits 1 to 9."""
+        def unitsolved(unit):
+            return set(values[s] for s in unit) == set(self.digits)
+        return values is not False and all(unitsolved(unit) for unit in self.unitlist)
 
     @staticmethod
     def cross(a, b):

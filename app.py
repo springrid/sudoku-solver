@@ -27,6 +27,7 @@ def solve():
         values = ['0' if val == '' else val for val in values]
         values = ''.join(values)
 
+        # Todo solvable not working
         solution, solvable, next_digit = sudoku_solver.run(values)
 
         if 'clue' in data:
