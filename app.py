@@ -6,6 +6,10 @@ app._static_folder = 'static'
 
 sudoku_solver = SudokuSolver(solve=True)
 
+# TODO
+# Make input digits bold and solved ones normal
+# Differentiate between multiple solutions and no solution
+
 
 @app.route('/', methods=['GET'])
 def index():
@@ -49,7 +53,7 @@ def solve():
             sudoku_data = dict()
             for k in data.keys():
                 sudoku_data[k] = data[k][0]
-    print(sudoku_data)
+
     redirect(url_for('index'))
     return render_template('index.html', sudokudata=sudoku_data)
 
