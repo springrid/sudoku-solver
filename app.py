@@ -33,6 +33,7 @@ def solve():
             sudoku_data = dict()
             for k in data.keys():
                 sudoku_data[k] = data[k][0]
+
             if data['clue'] == 'digit':
                 next_data = next_digit.values[0]
             elif data['clue'] == 'position':
@@ -44,7 +45,9 @@ def solve():
         if solvable:
             sudoku_data = solution
         else:
-            sudoku_data = data
+            sudoku_data = dict()
+            for k in data.keys():
+                sudoku_data[k] = data[k][0]
 
     redirect(url_for('index'))
     return render_template('index.html', sudokudata=sudoku_data)
