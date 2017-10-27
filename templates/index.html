@@ -14,7 +14,7 @@
     </head>
 
     <body>
-    <div id="wrapper" align="center", style="max-width:500px;">
+    <div id="wrapper" align="center" style="max-width:500px;">
 
 
 
@@ -25,13 +25,13 @@
             {% from "_formhelpers.html" import render_input %}
             <form action="/solve" method="post" class="no-spin" name="sudoku-form">
                 <table class="sudoku2">
-                      {% for row in 'ABCDEFGHI' %}
+                    {% for row in 'ABCDEFGHI' %}
                     {% if row in 'DG' %}
                     <tbody>
                     {% endif %}
                       <tr>
                           {% for column in range(1, 10) %}
-                          {% set placeholder_text = [row, column ] %}
+                          {% set placeholder_text = [row, column] %}
                             {% if sudokudata is defined %}
                             <td>{{render_input(row, column, sudokudata[placeholder_text|join]) }}
                             {% else %}

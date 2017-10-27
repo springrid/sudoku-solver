@@ -30,18 +30,18 @@ def solve():
         # Todo solvable not working
         solution, solvable, next_digit = sudoku_solver.run(values)
 
-        if 'clue' in data:
-            sudoku_data = dict()
-            for k in data.keys():
-                sudoku_data[k] = data[k][0]
+        # if 'clue' in data:
+        #    sudoku_data = dict()
+        #    for k in data.keys():
+        #        sudoku_data[k] = data[k][0]
 
-            if data['clue'] == 'digit':
-                next_data = next_digit.values[0]
-            elif data['clue'] == 'position':
-                next_data = next_digit.keys[0]
+        #    if data['clue'] == 'digit':
+        #        next_data = next_digit.values[0]
+        #    elif data['clue'] == 'position':
+        #        next_data = next_digit.keys[0]
 
-            redirect(url_for('index'))
-            return render_template('index.html', sudokudata=sudoku_data, next_data=next_data)
+        #    redirect(url_for('index'))
+        #    return render_template('index.html', sudokudata=sudoku_data, next_data=next_data)
 
         if solvable:
             sudoku_data = solution
@@ -49,7 +49,7 @@ def solve():
             sudoku_data = dict()
             for k in data.keys():
                 sudoku_data[k] = data[k][0]
-
+    print(sudoku_data)
     redirect(url_for('index'))
     return render_template('index.html', sudokudata=sudoku_data)
 
